@@ -4,13 +4,13 @@ export interface Student {
   age: number;
   location: string;
 }
-const studentA: student = {
+const studentA: Student = {
   firstName: "Yves",
   lastName: "Ish",
   age: 15,
   location: "Kigali, Rwanda", 
 };
-const studentB: student = {
+const studentB: Student = {
   firstName: "Ivan",
   lastName: "Inn",
   age: 18,
