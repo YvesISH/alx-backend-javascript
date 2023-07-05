@@ -4,25 +4,25 @@ export interface Student {
   age: number;
   location: string;
 }
-const studentA: student = {
+const studentA: Student = {
   firstName: "Yves",
   lastName: "Ish",
-  age: 15,
-  location: "Kigali, Rwanda", 
+  age: 12,
+  location: "Kigali,Rwanda",
 };
-const studentB: student = {
-  firstName: "Ivan",
-  lastName: "Inn",
-  age: 18,
-  location: "Musanze, Rwanda",
+const studentB: Student = {
+  firstName: "Anjali",
+  lastName: "Prajapati",
+  age: 32,
+  location: "Warsaw, Poland",
 };
 
 const studentsList: Array<Student> = [
   studentA,
   studentB,
 ];
-const stylsheet = `
-   html {
+const styleSheet = `
+  html {
     margin: 0;
     height: 100%;
   }
@@ -54,11 +54,34 @@ const stylsheet = `
   }
 `;
 
-/** Displays info about students in a table */
-
+/**
+ * Displays information about students in a table.
+ * @param students The list of students to display.
+ * @author Bezaleel Olakunori <https://github.com/B3zaleel>
+ */
 export const displayStudents = (students: Array<Student>): void => {
   const table = document.createElement('table');
   const tableHead = document.createElement('thead');
   const headRow = document.createElement('tr');
   const tableBody = document.createElement('tbody');
-}
+  headRow.insertAdjacentHTML('beforeend', '<td>FirstName</td');
+  headRow.insertAdjacentHTML('beforeend', '<td>Location</td');
+  tableHead.insertAdjacentElement('beforeend', headRow);
+
+  for (const student of students) {
+    const bodyRow = document.createElement('tr');
+    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.firstName}</td>`);
+    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.location}</td>`);
+    tableBody.insertAdjacentElement('beforeend', bodyRow);
+  }
+
+  table.insertAdjacentElement('beforeend', tableHead);
+  table.insertAdjacentElement('beforeend', tableBody);
+  document.body.insertAdjacentElement('beforeend', table);
+};
+
+displayStudents(studentsList);
+const styleSheetElement = document.createElement('style');
+styleSheetElement.innerHTML = styleSheet;
+document.head.insertAdjacentElement('beforeend', styleSheetElement);
+document.title = 'Task 0';
